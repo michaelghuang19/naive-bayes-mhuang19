@@ -117,13 +117,14 @@ You may submit your code any number of times before the deadline; but we will us
 5. Click "Replace file"
 6. **Confirm that the submitted file is correct on the page now showing.**  
     If it is, you have successfully submitted your program and you don't need to do anything else.
+7. **If you make any changes on GitLab after the deadline you will get the late penalty.**
 
 Please make sure that the file you uploaded above is your final solution, as we will be dowloading it at 10 PM on February 8 (unless you are taking a late penalty).
 
 ## Using Git for turn-in
 
 
-**Make sure that you are in the same directory as NaiveBayes.java**
+Make sure that you are in the same directory as NaiveBayes.java
 
 ```sh
 $ # Now commit all pending changes (-a) with the specified message (-m)
@@ -132,7 +133,10 @@ $ # Now, push this change to GitLab
 $ git push
 ```
 
-**Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab!**
+Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab! 
+
+**Confirm that you see the correct file on GitLab.**
+**If you make any changes on GitLab after the deadline you will get the late penalty.**
 
 #### Final Word of Caution for Git!
 
