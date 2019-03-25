@@ -2,8 +2,7 @@
 // Only use what is provided in the standard libraries.
 
 import java.io.*;
-import java.util.HashSet;
-import java.util.Scanner;
+import java.util.*;
 
 public class NaiveBayes {
 
@@ -33,13 +32,13 @@ public class NaiveBayes {
      * example_output.txt and output your result to stdout. Note the order
      * of the emails in the output does NOT matter.
      * 
-     * Do NOT directly process the file paths, to get the names of the
-     * email files, check out File's getName() function.
      *
      * Params:
      *      emails - unlabeled email files to be classified
+     *      spams  - set for spam emails that needs to be populated
+     *      hams   - set for ham emails that needs to be populated
      */
-    public void classify(File[] emails) throws IOException {
+    public void classify(File[] emails, Set<File> spams, Set<File> hams) throws IOException {
         // TODO: remove the exception and add your code here
         throw new UnsupportedOperationException("Not implemented.");
     }

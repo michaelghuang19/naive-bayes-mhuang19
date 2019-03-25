@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Set;
+import java.util.HashSet;
 
 // ************************** IMPORTANT **************************
 //   !!!!!! DO NOT TOUCH OR CHANGE ANYTHING IN THIS FILE !!!!!!
@@ -71,7 +73,25 @@ public class SpamFilterMain {
             System.out.println("# Done training.");
 
             System.out.println("# Test results:");
-            nb.classify(tests);
+            printClassificationResults(nb, tests);
+        }
+    }
+
+    public static void printClassificationResults(NaiveBayes nb, File[] data) throws IOException {
+        Set<File> spams = new HashSet<>();
+        Set<File> hams = new HashSet<>();
+        nb.classify(data, spams, hams);
+
+        Set<String> answers = new HashSet<>();
+        for (File email : spams) {
+            answers.add(email.getName() + " spam");
+        }
+        for (File email : hams) {
+            answers.add(email.getName() + " ham");
+        }
+
+        for (String ans : answers) {
+            System.out.println(ans);
         }
     }
 
