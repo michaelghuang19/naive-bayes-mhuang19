@@ -9,11 +9,12 @@
 
 ## 0\. Outline
 1. [Git](README.md#1-getting-started) **(not necessary for this assignment and you can skip this part, but it's good for learning about Git)**
-2. [Submitting your assignment](README.md#2-submitting-your-assignment)
-    * [Simple turn-in instructions](README.md#simple-turn-in-instructions) **(does not require knowledge of git)**
-    * [Using Git for turn-in](README.md#using-git-for-turn-in) (requires having set up Git in part 1)
+2. [Information about the files and file structure](README.md#2-coding-it-up)
+3. [Submitting your assignment](README.md#3-submitting-your-assignment)
+    * [GitLab GUI](README.md#using-the-gitlab-gui) **(simpler)**
+    * [Using Git](README.md#using-git) (requires having set up Git in part 1)
 
-## 1\. Git
+## 1\. Getting started
 
 The following instructions are written for a Unix-based platform (e.g., Linux, MacOS, etc.) Because the code is written in Java, it should work under Windows as well, though the directions in this document may not apply.
 
@@ -102,42 +103,168 @@ $ git push
 
 If you don't know Git that well, this probably seemed very arcane. Just keep using Git and you'll understand more and more. We'll provide explicit instructions below on how to use these commands to actually indicate your final lab solution.
 
-## 2\. Submitting your assignment
+## 2\. Coding it up
 
-You may submit your code any number of times before the deadline; but we will use the latest version you submit that arrives before the deadline. 
+### 2.1\. Starter code
 
-## Simple turn-in instructions
-1. Click NaiveBayes.java in the file list at the top of the Repository
+#### 2.1.1\. Data
+
+Inside the “data” folder, the emails are separated into “train” and “test” data. Each
+“train” email is already labeled as either spam or ham, and they should be used to train your
+model and word probabilities. The “test” data is not labeled, and they are the emails whose
+labels you will predict using your classifier.
+
+The emails we are using are a subset of the Enron Corpus, which is a set of real emails from
+employees at an energy company. The emails have a subject line and a body, both of which
+are “tokenized” so that each unique word or bit of punctuation is separated by a space or
+newline. The starter code provides a function that takes a filename and returns a set of all
+of the distinct tokens in the file.
+
+#### 2.1.2\. SpamFilterMain.java
+
+The provided main executable file that handles file loading for you
+and calls the NaiveBayes that you’ll implement. DO NOT MODIFY THIS FILE. You
+will not turn in this file. The only file you will turn in is NaiveBayes.java, which is expected
+to be run with the given version of `SpamFilterMain.java`.
+
+#### 2.1.3\. NaiveBayes.java
+
+NaiveBayes.java: The file you will modify and implement. A few notes:
+
+* Do NOT modify the provided method headers. Again, the `NaiveBayes.java` you
+turn in is expected to be run with the given `SpamFilterMain.java`.
+
+* Output: make sure you follow the format shown in example output.txt 
+(print the filename, a space, and either the word spam or ham), and print to stdout. Note that the
+order of the filenames in your output does not matter.
+
+* Think about the data structures you want to use to keep track of the word counts and/or
+probabilities.
+
+### 2.2\. Running the program
+
+To run the program, first compile it with: `$ javac SpamFilterMain.java`, then, execute it with:
+`$ java SpamFilterMain`.
+
+Note, the `data` directory needs to be in the same directory in which the program is executed.
+If you are running into issues loading the data (especially if you are using Eclipse) and you’re
+not sure where to put the `data` directory, check the console output produced when you run
+`SpamFilterMain`. The console output prints out the current working directory (cwd) where the
+program is executing. Just move the entire `data` directory into that cwd that was printed.
+
+### 2.3\. Comparing the result:
+
+It is not expected that Naive Bayes will classify every single test email correctly, but it should
+certainly do better than random chance! We are not grading you on whether you classify 100%
+of the examples accurately, but rather on general program correctness.
+
+After you’ve classified the 500 test emails, you can compare your results with the actual labels
+that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/16au/nbc/checker.html). 
+For this specific test dataset, you should
+get an error score of **27** (total number of incorrectly classified emails). Note that we will run your
+code on a test dataset you haven’t seen.
+
+### 2.4\. Notes and advice
+
+* Read about how to avoid floating point underflow in the notes.
+* Do not use integer division when generating your word probabilities.
+* Make sure you understand how smoothing works.
+* Remember to remove any debug statements that you are printing to the output.
+* Do not directly manipulate file paths or use hardcoded file paths. A file path you
+have hardcoded into your program that works on your computer won’t work on the computer
+we use to test your program. To get the name of the file, check out Java File’s `getName()`
+method.
+* If you use Eclipse, remove all package statements before you turn in your source
+code.
+* Needless to say, you should practice what you’ve learned in other courses: document your
+program, use good variable names, keep your code clean and straightforward, etc. Include
+comments outlining what your program does and how. We will not spend time trying to
+decipher obscure, contorted code.
+
+## 3\. Submitting your assignment
+
+You may submit your code multiple times; we will use the latest version you submit that arrives before the deadline. 
+
+The criteria for your lab being submitted on time is that your code must be tagged and pushed by the due date and time. This means that if one of the TAs or the instructor were to open up GitLab, they would be able to see your solutions on the GitLab web page.
+
+## Using the GitLab GUI
+1. Click NaiveBayes.java
+
+![Alt](/imgs/NaiveBayesFile.PNG)
+
 2. Click Replace
 
 ![Alt](/imgs/Replace.PNG)
 
 3. Click "click to upload"
+
+![Alt](/imgs/UploadFile.PNG)
+
 4. Find your file and upload it
-5. Click "Replace file"
-6. **Confirm that the submitted file is correct on the page now showing.**  
-    If it is, you have successfully submitted your program and you don't need to do anything else.
+5. Press "Replace file"
 
-Please make sure that the file you uploaded above is your final solution, as we will be dowloading it at 10 PM on February 8 (unless you are taking a late penalty).
+![Alt](/imgs/LoadedFile.PNG)
 
-## Using Git for turn-in
+6. Confirm that the submitted file is correct
 
+![Alt](/imgs/uploadedFile.PNG)
 
-**Make sure that you are in the same directory as NaiveBayes.java**
+7. Go to Tags (on the left, it might be minimized)
+
+![Alt](/imgs/tagsbutton.PNG)
+
+8. Click "New tag"
+
+![Alt](/imgs/newtag.PNG)
+
+9. Name the tag "complete"
+
+![Alt](/imgs/tagged.PNG)
+
+10. Scroll down and click "Create tag" on the bottom left 
+
+![Alt](/imgs/writeTag.PNG)
+
+11. Go back to Tags to make sure that the tag was made
+
+![Alt](/imgs/confirmTags.PNG)
+
+**Note: If you are resubmitting the assignment, you have to delete your tag using the red trash can symbol next on the right side of the tag.**
+
+## Using Git
+
+**Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab!**
+
+There is a bash script `turnInLab.sh` in the root level directory of your repository that commits your changes, deletes any prior tag for the current lab, tags the current commit, and pushes the branch and tag to GitLab. If you are using Linux or Mac OSX, you should be able to run the following:
 
 ```sh
-$ # Now commit all pending changes (-a) with the specified message (-m)
-$ git commit -a -m '[insert commit message here, it can be anything]'
-$ # Now, push this change to GitLab
-$ git push
+$ ./turnInLab.sh
 ```
 
-Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab! 
+You should see something like the following output:
 
-**Confirm that you see the correct file on GitLab.**
-**If you make any changes on GitLab after the deadline you will get the late penalty.**
+```sh
+$ ./turnInLab.sh
+[master b155ba0] naive-bayes
+ 1 file changed, 1 insertion(+)
+Deleted tag 'complete' (was b26abd0)
+To git@gitlab.com:cse312-19wi/naive-bayes-username.git
+ - [deleted]         complete
+Counting objects: 11, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (6/6), 448 bytes | 0 bytes/s, done.
+Total 6 (delta 3), reused 0 (delta 0)
+To git@gitlab.com:cse312-19wi/naive-bayes-username.git
+   ae31bce..b155ba0  master -> master
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 152 bytes | 0 bytes/s, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@gitlab.com:cse312-19wi/naive-bayes-username.git
+ * [new tag]         complete -> complete
+```
 
-#### Final Word of Caution for Git!
+#### Final Word of Caution!
 
 Git is a distributed version control system. This means everything operates offline until you run `git pull` or `git push`. This is a great feature.
 
