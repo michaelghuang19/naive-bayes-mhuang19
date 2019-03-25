@@ -11,7 +11,6 @@
 1. [Git](README.md#1-getting-started) **(not necessary for this assignment and you can skip this part, but it's good for learning about Git)**
 2. [Information about the files and file structure](README.md#2-coding-it-up)
 3. [Submitting your assignment](README.md#3-submitting-your-assignment)
-    * [GitLab GUI](README.md#using-the-gitlab-gui) **(simpler)**
     * [Using Git](README.md#using-git) (requires having set up Git in part 1)
 
 ## 1\. Getting started
@@ -151,11 +150,15 @@ which is expected to be run with the given version of `SpamFilterMain.java`.
 
 To run the program, first compile it with:
 
-    javac SpamFilterMain.java
+```sh
+$ javac SpamFilterMain.java
+```
 
 then, execute it with:
 
-    java SpamFilterMain
+```sh
+$ java SpamFilterMain
+```
 
 Note, the `data` directory needs to be in the same
 directory in which the program is executed. If you are running into issues loading the data (especially if you are using Eclipse) and you're not sure where to put the `data` directory, check the console output produced when you run `SpamFilterMain`. The console output prints out the current working directory (cwd) where the program 
