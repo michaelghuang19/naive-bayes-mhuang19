@@ -109,127 +109,109 @@ If you don't know Git that well, this probably seemed very arcane. Just keep usi
 
 #### 2.1.1\. Data
 
-Inside the “data” folder, the emails are separated into “train” and “test” data. Each
-“train” email is already labeled as either spam or ham, and they should be used to train your
-model and word probabilities. The “test” data is not labeled, and they are the emails whose
-labels you will predict using your classifier.
+Inside the `data` folder, the emails
+are separated into `train` and `test` data. Each
+`train` email is already labeled as either *spam*
+or *ham*, and they should be used to train your model
+and word probabilities. The `test` data is not labeled,
+and they are the emails whose labels you will predict using
+your classifier.
 
-The emails we are using are a subset of the Enron Corpus, which is a set of real emails from
-employees at an energy company. The emails have a subject line and a body, both of which
-are “tokenized” so that each unique word or bit of punctuation is separated by a space or
-newline. The starter code provides a function that takes a filename and returns a set of all
-of the distinct tokens in the file.
+The emails we are using are a subset of the Enron Corpus,
+which is a set of real emails from employees at an energy
+company. The emails have a subject line and a body, both of
+which are `tokenized` so that each unique word or bit of
+punctuation is separated by a space or newline. The starter
+code provides a function that takes a filename and returns a
+set of all of the distinct tokens in the file.
 
 #### 2.1.2\. SpamFilterMain.java
 
-The provided main executable file that handles file loading for you
-and calls the NaiveBayes that you’ll implement. DO NOT MODIFY THIS FILE. You
-will not turn in this file. The only file you will turn in is NaiveBayes.java, which is expected
-to be run with the given version of `SpamFilterMain.java`.
+The provided main executable file that handles file loading
+for you and 
+calls the NaiveBayes that you'll implement. **DO NOT MODIFY THIS FILE**. 
+
+You will not turn in this file. The only file you will turn in
+is `NaiveBayes.java`, 
+which is expected to be run with the given version of `SpamFilterMain.java`.
+
 
 #### 2.1.3\. NaiveBayes.java
 
-NaiveBayes.java: The file you will modify and implement. A few notes:
+`NaiveBayes.java`: The file you will modify and implement. A few notes:
 
-* Do NOT modify the provided method headers. Again, the `NaiveBayes.java` you
-turn in is expected to be run with the given `SpamFilterMain.java`.
 
-* Output: make sure you follow the format shown in example output.txt 
-(print the filename, a space, and either the word spam or ham), and print to stdout. Note that the
-order of the filenames in your output does not matter.
-
-* Think about the data structures you want to use to keep track of the word counts and/or
-probabilities.
+* **Do NOT modify the provided method headers**.
+    Again, the `NaiveBayes.java` you turn in is expected to be run with the given `SpamFilterMain.java`.
+* Output: make sure you follow the format shown in `example_output.txt` (print the filename, a space, and either the word
+    spam or ham), and print to **stdout**. Note that the order of the filenames in your output does **not** matter.
+* Think about the data structures you want to use to keep track of the word counts and/or probabilities.
 
 ### 2.2\. Running the program
 
-To run the program, first compile it with: `$ javac SpamFilterMain.java`, then, execute it with:
-`$ java SpamFilterMain`.
+To run the program, first compile it with:
 
-Note, the `data` directory needs to be in the same directory in which the program is executed.
-If you are running into issues loading the data (especially if you are using Eclipse) and you’re
-not sure where to put the `data` directory, check the console output produced when you run
-`SpamFilterMain`. The console output prints out the current working directory (cwd) where the
-program is executing. Just move the entire `data` directory into that cwd that was printed.
+    javac SpamFilterMain.java
+
+then, execute it with:
+
+    java SpamFilterMain
+
+Note, the `data` directory needs to be in the same
+directory in which the program is executed. If you are running into issues loading the data (especially if you are using Eclipse) and you're not sure where to put the `data` directory, check the console output produced when you run `SpamFilterMain`. The console output prints out the current working directory (cwd) where the program 
+is executing. Just move the entire `data` directory into that cwd that was printed.
 
 ### 2.3\. Comparing the result:
 
-It is not expected that Naive Bayes will classify every single test email correctly, but it should
-certainly do better than random chance! We are not grading you on whether you classify 100%
-of the examples accurately, but rather on general program correctness.
+It is not expected that Naive Bayes will classify every single
+test email correctly, but it should certainly do better than random chance! We are not grading you on whether you classify 100% of the examples accurately, but rather on general program correctness.
 
-After you’ve classified the 500 test emails, you can compare your results with the actual labels
-that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/16au/nbc/checker.html). 
-For this specific test dataset, you should
-get an error score of **27** (total number of incorrectly classified emails). Note that we will run your
-code on a test dataset you haven’t seen.
+After you've classified the 500 test emails, you can compare your results with the actual labels that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/16au/nbc/checker.html).
 
-### 2.4\. Notes and advice
+For this specific test dataset, you should get an error score of **27** (total number of incorrectly classified emails). Note that we will run your code on a test dataset you haven't seen.
+
+### 2.4\. Where to look if you get wrong error score
+
+* Only defining P(w | spam) for words in the spam
+training data rather than in both spam and ham.  Similarly for
+P(w | ham).
+* In testing, trying to use words that didn't appear
+anywhere in the training data.
+* In testing, only using words that appeared in both spam
+and ham training data.
+* Laplace smoothing using constants other than +1 in
+numerator and +2 in denominator.
+*  Dividing numbers of type integer.
+* Forgetting to use log probabilities to prevent underflow
+as discussed in the notes.
+* Multiplying log probabilities together as in Bayes'
+Theorem and comparing to 0.5 instead of adding log
+probabilities and comparing them as explained in the notes.
+* When copy-pasting your output to the output checker be
+sure that you don't paste any comment lines that begin with #.
+
+### 2.5\. Notes and advice
 
 * Read about how to avoid floating point underflow in the notes.
-* Do not use integer division when generating your word probabilities.
 * Make sure you understand how smoothing works.
-* Remember to remove any debug statements that you are printing to the output.
-* Do not directly manipulate file paths or use hardcoded file paths. A file path you
-have hardcoded into your program that works on your computer won’t work on the computer
-we use to test your program. To get the name of the file, check out Java File’s `getName()`
-method.
-* If you use Eclipse, remove all package statements before you turn in your source
-code.
-* Needless to say, you should practice what you’ve learned in other courses: document your
-program, use good variable names, keep your code clean and straightforward, etc. Include
-comments outlining what your program does and how. We will not spend time trying to
-decipher obscure, contorted code.
+* Remember to remove any debug statements that you are
+    printing to the output.
+* **Do not directly manipulate file paths or use
+    hardcoded file paths**. A file path you have hardcoded into your program that works on your computer won't work on the computer we use to test your program. To get the name of the file, you must use Java File's `getName()` method.
+* If you use Eclipse, remove all package statements before you turn in your source code.
+* Needless to say, you should practice what you've learned
+    in other courses: 
+document your program, use good variable names, keep your code
+clean and straightforward, 
+etc.  Include comments outlining what your program does and
+how. We will not spend time 
+trying to decipher obscure, contorted code. 
 
 ## 3\. Submitting your assignment
 
 You may submit your code multiple times; we will use the latest version you submit that arrives before the deadline. 
 
 The criteria for your lab being submitted on time is that your code must be tagged and pushed by the due date and time. This means that if one of the TAs or the instructor were to open up GitLab, they would be able to see your solutions on the GitLab web page.
-
-## Using the GitLab GUI
-1. Click NaiveBayes.java
-
-![Alt](/imgs/NaiveBayesFile.PNG)
-
-2. Click Replace
-
-![Alt](/imgs/Replace.PNG)
-
-3. Click "click to upload"
-
-![Alt](/imgs/UploadFile.PNG)
-
-4. Find your file and upload it
-5. Press "Replace file"
-
-![Alt](/imgs/LoadedFile.PNG)
-
-6. Confirm that the submitted file is correct
-
-![Alt](/imgs/uploadedFile.PNG)
-
-7. Go to Tags (on the left, it might be minimized)
-
-![Alt](/imgs/tagsbutton.PNG)
-
-8. Click "New tag"
-
-![Alt](/imgs/newtag.PNG)
-
-9. Name the tag "complete"
-
-![Alt](/imgs/tagged.PNG)
-
-10. Scroll down and click "Create tag" on the bottom left 
-
-![Alt](/imgs/writeTag.PNG)
-
-11. Go back to Tags to make sure that the tag was made
-
-![Alt](/imgs/confirmTags.PNG)
-
-**Note: If you are resubmitting the assignment, you have to delete your tag using the red trash can symbol next on the right side of the tag.**
 
 ## Using Git
 
