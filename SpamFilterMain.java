@@ -52,11 +52,11 @@ public class SpamFilterMain {
                 for (File trainDir : trainDirs) {
                     if (trainDir.getName().equals("ham")) {
                         trainHams = trainDir.listFiles();
-                    } else {  // spams
+                    } else if (trainDir.getName().equals("spam")) {  // spams
                         trainSpams = trainDir.listFiles();
                     }
                 }
-            } else {  // test
+            } else if (dir.getName().equals("test")) {  // test
                 tests = dir.listFiles();
             }
         }

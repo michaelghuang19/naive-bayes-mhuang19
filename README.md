@@ -132,7 +132,10 @@ $ # Now, push this change to GitLab
 $ git push
 ```
 
-**Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab!**
+Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab! 
+
+**Confirm that you see the correct file on GitLab.**
+**If you make any changes on GitLab after the deadline you will get the late penalty.**
 
 #### Final Word of Caution for Git!
 
