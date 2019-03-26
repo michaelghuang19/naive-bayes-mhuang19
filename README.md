@@ -151,7 +151,7 @@ which is expected to be run with the given version of `SpamFilterMain.java`.
 To run the program, first compile it with:
 
 ```sh
-$ javac SpamFilterMain.java
+$ javac SpamFilterMain.java NaiveBayes.java
 ```
 
 then, execute it with:
