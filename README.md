@@ -142,8 +142,6 @@ which is expected to be run with the given version of `SpamFilterMain.java`.
 
 * **Do NOT modify the provided method headers**.
     Again, the `NaiveBayes.java` you turn in is expected to be run with the given `SpamFilterMain.java`.
-* Output: make sure you follow the format shown in `example_output.txt` (print the filename, a space, and either the word
-    spam or ham), and print to **stdout**. Note that the order of the filenames in your output does **not** matter.
 * Think about the data structures you want to use to keep track of the word counts and/or probabilities.
 
 ### 2.2\. Running the program
@@ -190,17 +188,13 @@ as discussed in the notes.
 * Multiplying log probabilities together as in Bayes'
 Theorem and comparing to 0.5 instead of adding log
 probabilities and comparing them as explained in the notes.
-* When copy-pasting your output to the output checker be
-sure that you don't paste any comment lines that begin with #.
 
 ### 2.5\. Notes and advice
 
 * Read about how to avoid floating point underflow in the notes.
 * Make sure you understand how smoothing works.
-* Remember to remove any debug statements that you are
-    printing to the output.
-* **Do not directly manipulate file paths or use
-    hardcoded file paths**. A file path you have hardcoded into your program that works on your computer won't work on the computer we use to test your program. To get the name of the file, you must use Java File's `getName()` method.
+* **Remember to remove any debug statements that you are
+    printing to the output.**
 * If you use Eclipse, remove all package statements before you turn in your source code.
 * Needless to say, you should practice what you've learned
     in other courses: 
