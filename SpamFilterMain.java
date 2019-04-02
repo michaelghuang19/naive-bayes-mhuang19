@@ -77,6 +77,12 @@ public class SpamFilterMain {
         }
     }
 
+    /**
+    * DO NOT CHANGE!
+    *
+    * This class handles the classification of the data using the trained NaiveBayes classifier
+    * and also displays the classification in the required format.
+    */
     public static void printClassificationResults(NaiveBayes nb, File[] data) throws IOException {
         Set<File> spams = new HashSet<>();
         Set<File> hams = new HashSet<>();

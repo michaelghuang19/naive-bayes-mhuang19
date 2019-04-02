@@ -124,6 +124,8 @@ punctuation is separated by a space or newline. The starter
 code provides a function that takes a filename and returns a
 set of all of the distinct tokens in the file.
 
+**Do not alter any of the data files to ensure accurate results.**
+
 #### 2.1.2\. SpamFilterMain.java
 
 The provided main executable file that handles file loading
@@ -133,7 +135,6 @@ calls the NaiveBayes that you'll implement. **DO NOT MODIFY THIS FILE**.
 You will not turn in this file. The only file you will turn in
 is `NaiveBayes.java`, 
 which is expected to be run with the given version of `SpamFilterMain.java`.
-
 
 #### 2.1.3\. NaiveBayes.java
 
@@ -149,7 +150,7 @@ which is expected to be run with the given version of `SpamFilterMain.java`.
 To run the program, first compile it with:
 
 ```sh
-$ javac SpamFilterMain.java NaiveBayes.java
+$ javac SpamFilterMain.java
 ```
 
 then, execute it with:
@@ -167,7 +168,7 @@ is executing. Just move the entire `data` directory into that cwd that was print
 It is not expected that Naive Bayes will classify every single
 test email correctly, but it should certainly do better than random chance! We are not grading you on whether you classify 100% of the examples accurately, but rather on general program correctness.
 
-After you've classified the 500 test emails, you can compare your results with the actual labels that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/16au/nbc/checker.html).
+After you've classified the 500 test emails, you can compare your results with the actual labels that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/19wi/nbc/checker.html).
 
 For this specific test dataset, you should get an error score of **27** (total number of incorrectly classified emails). Note that we will run your code on a test dataset you haven't seen.
 
