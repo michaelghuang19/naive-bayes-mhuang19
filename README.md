@@ -8,13 +8,14 @@
 **IMPORTANT**: Try to get started on Naive Bayes early so that you can come to the Office Hours in case you face problems with any of the parts.
 
 ## 0\. Outline
-1. [Git](README.md#1-getting-started)
+1. [Setting up Git](README.md#1-getting-started)
 2. [Information about the files and file structure](README.md#2-coding-it-up)
 3. [Submitting your assignment](README.md#3-submitting-your-assignment)
 
 ## 1\. Getting started
 
-The following instructions are written for a Unix-based platform (e.g., Linux, MacOS, etc.) Because the code is written in Java, it should work under Windows as well, though the directions in this document may not apply.
+The following instructions are written for a Unix-based platform (e.g., Linux, MacOS, etc.).
+For Windows, you have to download [Git for Windows](https://gitforwindows.org/) and then you can follow the instructions below.
 
 ### 1.1\. Working with Git
 
