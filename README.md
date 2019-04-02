@@ -8,10 +8,9 @@
 **IMPORTANT**: Try to get started on Naive Bayes early so that you can come to the Office Hours in case you face problems with any of the parts.
 
 ## 0\. Outline
-1. [Git](README.md#1-getting-started) **(not necessary for this assignment and you can skip this part, but it's good for learning about Git)**
+1. [Git](README.md#1-getting-started)
 2. [Information about the files and file structure](README.md#2-coding-it-up)
 3. [Submitting your assignment](README.md#3-submitting-your-assignment)
-    * [Using Git](README.md#using-git) (requires having set up Git in part 1)
 
 ## 1\. Getting started
 
@@ -208,42 +207,25 @@ trying to decipher obscure, contorted code.
 
 You may submit your code multiple times; we will use the latest version you submit that arrives before the deadline. 
 
-The criteria for your lab being submitted on time is that your code must be tagged and pushed by the due date and time. This means that if one of the TAs or the instructor were to open up GitLab, they would be able to see your solutions on the GitLab web page.
+The criteria for your lab being submitted on time is that your code must be pushed by the due date and time. This means that if one of the TAs or the instructor were to open up GitLab, they would be able to see your solutions on the GitLab web page.
 
-## Using Git
+## Using Git for turn-in
 
-**Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab!**
-
-There is a bash script `turnInLab.sh` in the root level directory of your repository that commits your changes, deletes any prior tag for the current lab, tags the current commit, and pushes the branch and tag to GitLab. If you are using Linux or Mac OSX, you should be able to run the following:
+**Make sure that you are in the same directory as NaiveBayes.java**
 
 ```sh
-$ ./turnInLab.sh
+$ # Now commit all pending changes (-a) with the specified message (-m)
+$ git commit -a -m '[insert commit message here, it can be anything]'
+$ # Now, push this change to GitLab
+$ git push
 ```
 
-You should see something like the following output:
+Just because your code has been committed on your local machine does not mean that it has been submitted -- it needs to be on GitLab! 
 
-```sh
-$ ./turnInLab.sh
-[master b155ba0] naive-bayes
- 1 file changed, 1 insertion(+)
-Deleted tag 'complete' (was b26abd0)
-To git@gitlab.com:cse312-19wi/naive-bayes-username.git
- - [deleted]         complete
-Counting objects: 11, done.
-Delta compression using up to 4 threads.
-Compressing objects: 100% (4/4), done.
-Writing objects: 100% (6/6), 448 bytes | 0 bytes/s, done.
-Total 6 (delta 3), reused 0 (delta 0)
-To git@gitlab.com:cse312-19wi/naive-bayes-username.git
-   ae31bce..b155ba0  master -> master
-Counting objects: 1, done.
-Writing objects: 100% (1/1), 152 bytes | 0 bytes/s, done.
-Total 1 (delta 0), reused 0 (delta 0)
-To git@gitlab.com:cse312-19wi/naive-bayes-username.git
- * [new tag]         complete -> complete
-```
+**Confirm that you see the correct file on GitLab.**
+**If you make any changes on GitLab after the deadline you will get the late penalty.**
 
-#### Final Word of Caution!
+#### Final Word of Caution for Git!
 
 Git is a distributed version control system. This means everything operates offline until you run `git pull` or `git push`. This is a great feature.
 
