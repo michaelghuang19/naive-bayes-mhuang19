@@ -28,7 +28,8 @@ public class NaiveBayes {
      * If you change the method header here, our grading script won't
      * work and you will lose points!
      *
-     * Classify the given unlabeled set of emails. Follow the format in
+     * Classify the given unlabeled set of emails. Add each email to the correct
+     * label set. SpamFilterMain.java would follow the format in
      * example_output.txt and output your result to stdout. Note the order
      * of the emails in the output does NOT matter.
      * 
