@@ -1,11 +1,7 @@
 # CSE 312: Naive Bayes
 
 
-**DEADLINES**
-
-**Due: Friday, February 8th 10:00 PM**
-
-**IMPORTANT**: Try to get started on Naive Bayes early so that you can come to the Office Hours in case you face problems with any of the parts.
+**DEADLINE: Friday, November 8th 11:59 PM**
 
 ## 0\. Outline
 1. [Setting up Git](README.md#1-getting-started)
@@ -37,7 +33,7 @@ If you are using Eclipse or IntelliJ, many versions come with git already config
 
 #### 1.1.2\. Cloning your Naive Bayes repository
 
-We've created a GitLab repository that you will use to implement Naive Bayes. This repository is hosted on the [CSE GitLab](https://gitlab.cs.washington.edu) site, and you can view it by visiting the GitLab website at `https://gitlab.cs.washington.edu/cse312-19wi/naive-bayes-[your GitLab username]`. If you don't see this repository or are unable to access it, let us know immediately!
+We've created a GitLab repository that you will use to implement Naive Bayes. This repository is hosted on the [CSE GitLab](https://gitlab.cs.washington.edu) site, and you can view it by visiting the GitLab website at `https://gitlab.cs.washington.edu/cse312-19au/naive-bayes-[your GitLab username]`. If you don't see this repository or are unable to access it, let us know immediately!
 
 The first thing you'll need to do is set up a SSH key to allow communication with GitLab:
 
@@ -50,7 +46,7 @@ While you're logged into the GitLab website, browse around to see which projects
 We next want to move the code from the GitLab repository onto your local file system. To do this, you'll need to clone the lab repository by issuing the following commands on the command line:
 
 ```sh
-$ git clone git@gitlab.cs.washington.edu:cse312-19wi/naive-bayes-MY_GITLAB_USERNAME.git
+$ git clone git@gitlab.cs.washington.edu:cse312-19au/naive-bayes-MY_GITLAB_USERNAME.git
 $ cd naive-bayes-MY_GITLAB_USERNAME
 ```
 
@@ -85,7 +81,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 286 bytes | 0 bytes/s, done.
 Total 3 (delta 1), reused 0 (delta 0)
-To git@gitlab.cs.washington.edu:cse312-19wi/naive-bayes-username.git
+To git@gitlab.cs.washington.edu:cse312-19au/naive-bayes-username.git
    cb5be61..9bbce8d  master -> master
 ```
 
@@ -104,9 +100,15 @@ If you don't know Git that well, this probably seemed very arcane. Just keep usi
 
 ## 2\. Coding it up
 
-### 2.1\. Starter code
+### 2.1\. Introduction
 
-#### 2.1.1\. Data
+Now that you have set the project up you are all set to start working. But before you start coding it will be really helpful for you to review the lectures on Naive Bayes and also read the following document: [Naive Bayes Notes](https://courses.cs.washington.edu/courses/cse312/19au/hw/naivebayesnotes.pdf)
+
+We recommend that you review them before you start as they will prove to be really useful for this project.
+
+### 2.2\. Starter code
+
+#### 2.2.1\. Data
 
 Inside the `data` folder, the emails
 are separated into `train` and `test` data. Each
@@ -126,7 +128,7 @@ set of all of the distinct tokens in the file.
 
 **Do not alter any of the data files to ensure accurate results.**
 
-#### 2.1.2\. SpamFilterMain.java
+#### 2.2.2\. SpamFilterMain.java
 
 The provided main executable file that handles file loading
 for you and 
@@ -136,7 +138,7 @@ You will not turn in this file. The only file you will turn in
 is `NaiveBayes.java`, 
 which is expected to be run with the given version of `SpamFilterMain.java`.
 
-#### 2.1.3\. NaiveBayes.java
+#### 2.2.3\. NaiveBayes.java
 
 `NaiveBayes.java`: The file you will modify and implement. A few notes:
 
@@ -145,7 +147,7 @@ which is expected to be run with the given version of `SpamFilterMain.java`.
     Again, the `NaiveBayes.java` you turn in is expected to be run with the given `SpamFilterMain.java`.
 * Think about the data structures you want to use to keep track of the word counts and/or probabilities.
 
-### 2.2\. Running the program
+### 2.3\. Running the program
 
 To run the program, first compile it with:
 
@@ -163,16 +165,16 @@ Note, the `data` directory needs to be in the same
 directory in which the program is executed. If you are running into issues loading the data (especially if you are using Eclipse) and you're not sure where to put the `data` directory, check the console output produced when you run `SpamFilterMain`. The console output prints out the current working directory (cwd) where the program 
 is executing. Just move the entire `data` directory into that cwd that was printed.
 
-### 2.3\. Comparing the result:
+### 2.4\. Comparing the result:
 
 It is not expected that Naive Bayes will classify every single
 test email correctly, but it should certainly do better than random chance! We are not grading you on whether you classify 100% of the examples accurately, but rather on general program correctness.
 
-After you've classified the 500 test emails, you can compare your results with the actual labels that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/19wi/nbc/checker.html).
+After you've classified the 500 test emails, you can compare your results with the actual labels that we hid from you, by using the output checker [here](https://courses.cs.washington.edu/courses/cse312/19au/nbc/checker.html).
 
 For this specific test dataset, you should get an error score of **27** (total number of incorrectly classified emails). Note that we will run your code on a test dataset you haven't seen.
 
-### 2.4\. Where to look if you get wrong error score
+### 2.5\. Where to look if you get wrong error score
 
 * Only defining P(w | spam) for words in the spam
 training data rather than in both spam and ham.  Similarly for
@@ -190,7 +192,7 @@ as discussed in the notes.
 Theorem and comparing to 0.5 instead of adding log
 probabilities and comparing them as explained in the notes.
 
-### 2.5\. Notes and advice
+### 2.6\. Notes and advice
 
 * Read about how to avoid floating point underflow in the notes.
 * Make sure you understand how smoothing works.
@@ -234,7 +236,7 @@ Git is a distributed version control system. This means everything operates offl
 The bad thing is that you may **forget to `git push` your changes**. This is why we strongly, strongly suggest that you **check GitLab to be sure that what you want us to see matches up with what you expect**.  As a second sanity check, you can re-clone your repository in a different directory to confirm the changes:
 
 ```sh
-$ git clone git@gitlab.cs.washington.edu:cse312-19wi/naive-bayes-username.git confirmation_directory
+$ git clone git@gitlab.cs.washington.edu:cse312-19au/naive-bayes-username.git confirmation_directory
 $ cd confirmation_directory
 $ # ... make sure everything is as you expect ...
 ```
