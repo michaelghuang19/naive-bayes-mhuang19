@@ -6,11 +6,11 @@ import java.util.*;
 
 public class NaiveBayes {
 
-    // TODO: How do we want to represent fractions?
-    public Map<String, int[]> spamWords;
-    public Map<String, int[]> hamWords;
-    public int[] spamFraction;
-    public int[] hamFraction;
+    // TODO: How do we want to represent fractions? double vs int
+    public Map<String, double[]> spamWords;
+    public Map<String, double[]> hamWords;
+    public double[] spamFraction;
+    public double[] hamFraction;
 
     /*
      * !! DO NOT CHANGE METHOD HEADER !!
@@ -28,35 +28,46 @@ public class NaiveBayes {
         this.spamWords = new HashMap<>();
         this.hamWords = new HashMap<>();
 
-        int numSpam = spams.length;
-        int numHam = hams.length;
+        double numSpam = spams.length;
+        double numHam = hams.length;
 
-        int[] defaultSpam = {1, numSpam + 2};
-        int[] defaultHam = {1, numHam + 2};
+        // default fraction value with laplace smoothing
 
-        trainProbabilities(spams, this.spamWords, defaultSpam);
-        trainProbabilities(hams, this.hamWords, defaultHam);
+        double[] defaultSpam = {1, numSpam + 2};
+        double[] defaultHam = {1, numHam + 2};
 
-        this.spamFraction = new int[] {numSpam, numSpam + numHam};
-        this.hamFraction = new int[] {numHam, numSpam + numHam};
+        trainProbabilities(spams, this.spamWords, defaultSpam, false);
+        trainProbabilities(hams, this.hamWords, defaultHam, false);
 
-        
+        this.spamFraction = new double[] {numSpam, numSpam + numHam};
+        this.hamFraction = new double[] {numHam, numSpam + numHam};
+
+        trainProbabilities(hams, this.spamWords, defaultSpam, true);
+        trainProbabilities(spams, this.hamWords, defaultHam, true);
 
     }
 
-    private void trainProbabilities(File[] files, Map<String, int[]> map, int[] defaultFraction)
+    private void trainProbabilities(File[] files, Map<String, double[]> map,
+                                    double[] defaultFraction, boolean smoothing)
             throws IOException {
-        for (File file : files) {
-            Set<String> fileTokens = tokenSet(file);
+            for (File file : files) {
+                Set<String> fileTokens = tokenSet(file);
 
-            for (String token : fileTokens) {
-                if (!map.containsKey(token)) {
-                    map.put(token, defaultFraction);
+                for (String token : fileTokens) {
+                    if (!map.containsKey(token)) {
+                        map.put(token, defaultFraction);
+                    }
+
+                    // we only actually update if we aren't smoothing.
+                    // smoothing is when we update for laplace
+                    // with words that only appear in one category or the other
+                    if (!smoothing) {
+                        map.get(token)[0]++;
+                    }
+
                 }
-
-                map.get(token)[0]++;
             }
-        }
+
     }
 
     /*
@@ -76,8 +87,29 @@ public class NaiveBayes {
      *      hams   - set for ham emails that needs to be populated
      */
     public void classify(File[] emails, Set<File> spams, Set<File> hams) throws IOException {
-        // TODO: remove the exception and add your code here
-        throw new UnsupportedOperationException("Not implemented.");
+
+        for (File email : emails) {
+            Set<String> testTokens = tokenSet(email);
+
+            for (String testToken : testTokens) {
+                if (this.spamWords.containsKey(testToken)
+                        || this.hamWords.containsKey(testToken)) {
+
+                    double[] result = new double[2];
+
+                    // TODO : insert code here
+
+                    // add based on final result
+                    if ((result[0] / result[1]) > 0.5) {
+                        spams.add(email);
+                    } else {
+                        hams.add(email);
+                    }
+                }
+            }
+        }
+
+
     }
 
 
