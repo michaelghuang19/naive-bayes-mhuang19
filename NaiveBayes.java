@@ -6,6 +6,12 @@ import java.util.*;
 
 public class NaiveBayes {
 
+    // TODO: How do we want to represent fractions?
+    public Map<String, int[]> spamWords;
+    public Map<String, int[]> hamWords;
+    public int[] spamFraction;
+    public int[] hamFraction;
+
     /*
      * !! DO NOT CHANGE METHOD HEADER !!
      * If you change the method header here, our grading script won't
@@ -19,8 +25,38 @@ public class NaiveBayes {
      *      spams - email files labeled as 'spam'
      */
     public void train(File[] hams, File[] spams) throws IOException {
-        // TODO: remove the exception and add your code here
-        throw new UnsupportedOperationException("Not implemented.");
+        this.spamWords = new HashMap<>();
+        this.hamWords = new HashMap<>();
+
+        int numSpam = spams.length;
+        int numHam = hams.length;
+
+        int[] defaultSpam = {1, numSpam + 2};
+        int[] defaultHam = {1, numHam + 2};
+
+        trainProbabilities(spams, this.spamWords, defaultSpam);
+        trainProbabilities(hams, this.hamWords, defaultHam);
+
+        this.spamFraction = new int[] {numSpam, numSpam + numHam};
+        this.hamFraction = new int[] {numHam, numSpam + numHam};
+
+        
+
+    }
+
+    private void trainProbabilities(File[] files, Map<String, int[]> map, int[] defaultFraction)
+            throws IOException {
+        for (File file : files) {
+            Set<String> fileTokens = tokenSet(file);
+
+            for (String token : fileTokens) {
+                if (!map.containsKey(token)) {
+                    map.put(token, defaultFraction);
+                }
+
+                map.get(token)[0]++;
+            }
+        }
     }
 
     /*
