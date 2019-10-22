@@ -91,22 +91,37 @@ public class NaiveBayes {
         for (File email : emails) {
             Set<String> testTokens = tokenSet(email);
 
+            double spamLogTotal = 0;
+            double hamLogTotal = 0;
+
             for (String testToken : testTokens) {
                 if (this.spamWords.containsKey(testToken)
                         || this.hamWords.containsKey(testToken)) {
 
-                    double[] result = new double[2];
+                    spamLogTotal += Math.log(this.spamWords.get(testToken)[0]
+                            / this.spamWords.get(testToken)[1]);
+                    hamLogTotal += Math.log(this.hamWords.get(testToken)[0]
+                            / this.hamWords.get(testToken)[1]);
 
                     // TODO : insert code here
 
+
                     // add based on final result
-                    if ((result[0] / result[1]) > 0.5) {
-                        spams.add(email);
-                    } else {
-                        hams.add(email);
-                    }
                 }
             }
+
+            double spamLogProb = Math.log(this.spamFraction[0] / this.hamFraction[1]);
+            double hamLogProb = Math.log(this.hamFraction[0] / this.hamFraction[1]);
+
+            double spamProb = spamLogProb + spamLogTotal;
+            double hamProb = hamLogProb + hamLogTotal;
+
+            if (spamProb > hamProb) {
+                spams.add(email);
+            } else {
+                hams.add(email);
+            }
+
         }
 
 
