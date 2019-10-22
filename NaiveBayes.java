@@ -7,10 +7,10 @@ import java.util.*;
 public class NaiveBayes {
 
     // TODO: How do we want to represent fractions? double vs int
-    public Map<String, double[]> spamWords;
-    public Map<String, double[]> hamWords;
-    public double[] spamFraction;
-    public double[] hamFraction;
+    private Map<String, double[]> spamWords;
+    private Map<String, double[]> hamWords;
+    private double[] spamFraction;
+    private double[] hamFraction;
 
     /*
      * !! DO NOT CHANGE METHOD HEADER !!
@@ -49,22 +49,24 @@ public class NaiveBayes {
 
     private void trainProbabilities(File[] files, Map<String, double[]> map,
                                     double[] defaultFraction, boolean smoothing)
-            throws IOException {
+                                    throws IOException {
+
             for (File file : files) {
                 Set<String> fileTokens = tokenSet(file);
 
                 for (String token : fileTokens) {
                     if (!map.containsKey(token)) {
-                        map.put(token, defaultFraction);
+                        map.put(token, defaultFraction.clone());
                     }
 
                     // we only actually update if we aren't smoothing.
                     // smoothing is when we update for laplace
                     // with words that only appear in one category or the other
                     if (!smoothing) {
-                        map.get(token)[0]++;
+                        map.get(token)[0] = map.get(token)[0] + 1;
                     }
 
+                    System.out.println(Arrays.toString(map.get(token)));
                 }
             }
 
